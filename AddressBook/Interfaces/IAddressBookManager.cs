@@ -19,9 +19,9 @@ namespace AddressBook.Interfaces
         public void SearchContact(ref List<Contact> addressBook);
         /* Tar emot adressboken som en list och ber användaren om ett söknamn
                    att söka igenom list med. */
-        public void ManageContactMenu();
+        public void ManageContactMenu(ref List<Contact> addressBook, Guid id);
         /* Menyval efter att användaren sökt upp en specifik kontakt. */
-        public void RemoveContact();
+        public void RemoveContact(ref List<Contact> addressBook, Guid id);
         /* Ska ligga under "ManageContactMenu" */
         public void EditContact();
         /* Tillåter användaren att ändra uppgifter om en speciell kontakt.
