@@ -9,7 +9,7 @@ namespace AddressBook.Interfaces
 {
     internal interface IAddressBookManager
     {
-        public int MainMenu();
+        public string MainMenu();
         /* Visar huvudmenyn och ber användare göra ett val som den returnerar till main */
         public void ViewAddressBook(List<Contact> addressBook);
         /* Metod som listar alla kontakter i adressboken. */

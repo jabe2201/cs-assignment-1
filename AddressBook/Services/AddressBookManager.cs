@@ -20,7 +20,7 @@ namespace AddressBook.Services
             throw new NotImplementedException();
         }
 
-        public int MainMenu()
+        public string MainMenu()
         {
             Console.Clear();
             Console.WriteLine("         ADDRESS BOOK         ");
@@ -28,7 +28,7 @@ namespace AddressBook.Services
             Console.WriteLine("2. Add Contact to your Address book");
             Console.WriteLine("3. Search Contact");
             Console.Write("\nPlease enter an Option: ");
-            return int.Parse(Console.ReadLine());
+            return (Console.ReadLine());
         }
 
         public void ManageContactMenu()

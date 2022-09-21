@@ -9,4 +9,10 @@ var addressBookManager = new AddressBookManager();
 while (true)
 {
     var option = addressBookManager.MainMenu();
+    switch (option)
+    {
+        case "1":
+
+            break;
+    }
 }
