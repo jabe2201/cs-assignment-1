@@ -25,6 +25,9 @@ while (true)
             Console.WriteLine("Contact successfully added.");
             Console.ReadKey();
             break;
+        case "3":
+            addressBookManager.SearchContact(ref addressBook);  
+            break;
         case "Q":
             Environment.Exit(0);
             break;

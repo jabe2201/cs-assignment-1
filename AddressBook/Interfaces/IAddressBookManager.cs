@@ -16,7 +16,7 @@ namespace AddressBook.Interfaces
         public Contact CreateContact();
         /* Tar emot en kontakt och låter användaren fylla den med uppgifter.
            Returnerar sedan den färdiga kontakten rätt in i adressboken. */
-        public void SearchContact();
+        public void SearchContact(ref List<Contact> addressBook);
         /* Tar emot adressboken som en list och ber användaren om ett söknamn
                    att söka igenom list med. */
         public void ManageContactMenu();
