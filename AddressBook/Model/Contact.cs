@@ -20,8 +20,6 @@ namespace AddressBook.Model
         public string City { get; set; }
         public string PhoneNumber { get; set; }
 
-        public string DisplayPerson => $"{FirstName} {LastName}";
-        public string DisplayAddress => $"{StreetAddress}, {City}";
 
         /*
             Jag har för min klass "Contact" valt att använda mig av ett Guid istället för

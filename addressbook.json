@@ -1,6 +1,6 @@
 [
   {
-    "Id": "61683b48-7ec3-4c1f-920f-6b50b7cba6dc",
+    "Id": "040e387e-c61d-486c-9f02-fead762ee6a3",
     "FirstName": "Jacob",
     "LastName": "Sp\u00E4nnare",
     "StreetAddress": "Odlingsv\u00E4gen 89",
@@ -8,5 +8,25 @@
     "PhoneNumber": "0732084025",
     "DisplayPerson": "Jacob Sp\u00E4nnare",
     "DisplayAddress": "Odlingsv\u00E4gen 89, \u00C4lta"
+  },
+  {
+    "Id": "0610208e-1e2d-4519-b73d-34e52fa4236c",
+    "FirstName": "",
+    "LastName": "",
+    "StreetAddress": "",
+    "City": "",
+    "PhoneNumber": "",
+    "DisplayPerson": " ",
+    "DisplayAddress": ", "
+  },
+  {
+    "Id": "6f0dd03d-db8c-4b1a-ad47-8321d44bac94",
+    "FirstName": "",
+    "LastName": "",
+    "StreetAddress": "",
+    "City": "",
+    "PhoneNumber": "",
+    "DisplayPerson": " ",
+    "DisplayAddress": ", "
   }
 ]
