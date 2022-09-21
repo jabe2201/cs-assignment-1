@@ -46,9 +46,14 @@ namespace AddressBook.Services
             throw new NotImplementedException();
         }
 
-        public void ViewAddressBook()
+        public void ViewAddressBook(List<Contact> addressBook)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < addressBook.Count; i++)
+            {
+                Console.WriteLine($"Contact number: {i + 1}.\nName: {addressBook[i].DisplayPerson}\nAdress: {addressBook[i].DisplayAddress}\nPhone: {addressBook[i].PhoneNumber}\n");
+            }
+            /* Jag har här valt att använda en for-loop eftersom jag satt Id som en Guid och det inte säger så mycket. Jag skapar därför ett index istället 
+               som är oberoende av kontakternas Id-värden. */
         }
     }
 }
