@@ -12,7 +12,14 @@ namespace AddressBook.Services
     {
         public Contact CreateContact()
         {
-            throw new NotImplementedException();
+            var contact = new Contact();
+            Console.WriteLine("         ADD CONTACT         ");
+            Console.Write("Enter First Name: "); contact.FirstName = Console.ReadLine();
+            Console.Write("Enter Last Name: "); contact.LastName = Console.ReadLine();
+            Console.Write("Enter Street Address: "); contact.StreetAddress = Console.ReadLine();
+            Console.Write("Enter City: "); contact.City = Console.ReadLine();
+            Console.Write("Enter Phone number: "); contact.PhoneNumber = Console.ReadLine();
+            return contact;
         }
 
         public void EditContact()
@@ -48,12 +55,20 @@ namespace AddressBook.Services
 
         public void ViewAddressBook(List<Contact> addressBook)
         {
-            for (int i = 0; i < addressBook.Count; i++)
+            if(addressBook.Count == 0)
             {
-                Console.WriteLine($"Contact number: {i + 1}.\nName: {addressBook[i].DisplayPerson}\nAdress: {addressBook[i].DisplayAddress}\nPhone: {addressBook[i].PhoneNumber}\n");
+                Console.WriteLine("Your AddressBook is empty.");
             }
-            /* Jag har här valt att använda en for-loop eftersom jag satt Id som en Guid och det inte säger så mycket. Jag skapar därför ett index istället 
-               som är oberoende av kontakternas Id-värden. */
+            else
+            {
+                for (int i = 0; i < addressBook.Count; i++)
+                {
+                    Console.WriteLine($"Contact number: {i + 1}.\nName: {addressBook[i].DisplayPerson}\nAdress: {addressBook[i].DisplayAddress}\nPhone: {addressBook[i].PhoneNumber}\n");
+                }
+                /* Jag har här valt att använda en for-loop eftersom jag satt Id som en Guid och det inte säger så mycket. Jag skapar därför ett index istället 
+                   som är oberoende av kontakternas Id-värden. */
+            }
+
         }
     }
 }
