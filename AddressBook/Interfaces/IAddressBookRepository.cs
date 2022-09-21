@@ -9,7 +9,7 @@ namespace AddressBook.Interfaces
 {
     public interface IAddressBookRepository
     {
-        public void SaveAddressBook();
+        public void SaveAddressBook(List<Contact> addressBook);
         /* Metod som sparar adressboken till en fil. Kommer att behöva
            list som parameter. */
         public List<Contact> ReadAddressBook();
