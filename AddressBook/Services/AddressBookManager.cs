@@ -43,6 +43,7 @@ namespace AddressBook.Services
             Console.WriteLine("1. View Address book");
             Console.WriteLine("2. Add Contact to your Address book");
             Console.WriteLine("3. Search Contact");
+            Console.WriteLine("Q To Exit Addressbook");
             Console.Write("\nPlease enter an Option: ");
             return (Console.ReadLine());
         }
