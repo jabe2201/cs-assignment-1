@@ -50,14 +50,34 @@ namespace AddressBook.Services
             return (Console.ReadLine());
         }
 
-        public void ManageContactMenu()
+        public void ManageContactMenu(ref List<Contact> addressBook, Guid id)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Manage Contact\n");
+            Console.WriteLine("1. Change contat");
+            Console.WriteLine("2. Remove contact");
+            Console.Write("Enter command: ");
+
+            switch (Console.ReadLine())
+            {
+                case "1":
+
+                    break;
+                case "2":
+                    RemoveContact(ref addressBook, id);
+                    break;
+                default:
+                    Console.Clear();
+                    Console.WriteLine("Not a valid command.");
+                    Console.ReadKey();
+                    break;
+            }
         }
 
-        public void RemoveContact()
+        public void RemoveContact(ref List<Contact> addressBook, Guid id)
         {
-            throw new NotImplementedException();
+            var addressBookRepo = new AddressBookRepository();
+            addressBook = addressBook.Where(x => x.Id != id).ToList();
+            addressBookRepo.SaveAddressBook(addressBook);
         }
 
         public void SearchContact(ref List<Contact> addressBook)
@@ -96,7 +116,7 @@ namespace AddressBook.Services
                                 Console.Write("\nPlease enter Contact Number of the Contact you would like to manage: ");
                                 var index = int.Parse(Console.ReadLine());
                                 var id = firstAddressBook[index - 1].Id;
-                                //ManageContact.ManageContactMenu(ref addressBook, id);
+                                addressBookManager.ManageContactMenu(ref addressBook, id);
                             }
                             catch
                             {
@@ -129,7 +149,7 @@ namespace AddressBook.Services
                                 Console.Write("\nPlease enter Contact Number of the Contact you would like to manage: ");
                                 var index = int.Parse(Console.ReadLine());
                                 var id = lastAddressBook[index - 1].Id;
-                                //ManageContact.ManageContactMenu(ref addressBook, id);
+                                addressBookManager.ManageContactMenu(ref addressBook, id);
                             }
                             catch
                             {
@@ -158,6 +178,7 @@ namespace AddressBook.Services
                     for (int i = 0; i < addressBook.Count; i++)
                     {
                         Console.WriteLine($"Contact number: {i + 1}.\nName: {addressBook[i].FirstName} {addressBook[i].LastName}\nAdress: {addressBook[i].StreetAddress}, {addressBook[i].City} \nPhone: {addressBook[i].PhoneNumber}\n");
+                        Console.Write("Back");
                     }
                     /* Jag har här valt att använda en for-loop eftersom jag satt Id som en Guid och det inte säger så mycket. Jag skapar därför ett index istället 
                        som är oberoende av kontakternas Id-värden. */
