@@ -20,18 +20,10 @@ while (true)
         case "2":
             Console.Clear();
             var contact = addressBookManager.CreateContact();
-            if(contact != null)
-            {
-                addressBook.Add(contact);
-                addressBookRepository.SaveAddressBook(addressBook);
-                Console.WriteLine("Contact successfully added.");
-            }
-            else
-            {
-                Console.WriteLine("Contact information cannot be empty. Contact was not added.");
-            }
-            
-
+            addressBook.Add(contact);
+            addressBookRepository.SaveAddressBook(addressBook);
+            Console.WriteLine("Contact successfully added.");
+            Console.ReadKey();
             break;
 
     }
