@@ -21,7 +21,7 @@ namespace AddressBook.Services
             {
                 Console.WriteLine("Must enter a name.");
                 Console.ReadKey();
-                Console.Clear(); 
+                Console.Clear();
                 Console.Write("Enter First Name: "); contact.FirstName = Console.ReadLine();
 
             }
@@ -52,6 +52,7 @@ namespace AddressBook.Services
 
         public void ManageContactMenu(ref List<Contact> addressBook, Guid id)
         {
+            Console.Clear();
             Console.WriteLine("Manage Contact\n");
             Console.WriteLine("1. Change contat");
             Console.WriteLine("2. Remove contact");
@@ -84,11 +85,11 @@ namespace AddressBook.Services
         {
             string searchName;
             string searchOption;
-            var addressBookManager = new AddressBookManager();
+            var addressBookManager = new AddressBookManager(); // du behöver inte ha denna!
             Console.Clear();
             Console.WriteLine("Search for Contact");
             Console.Write("Search by (F) First name or (L) Last name: "); searchOption = Console.ReadLine().ToLower();
-            
+
             Console.Clear();
 
             switch (searchOption)
@@ -98,7 +99,7 @@ namespace AddressBook.Services
                     Console.Write("Enter Name: ");
                     searchName = Console.ReadLine();
                     Console.Clear();
-                    
+
                     var firstAddressBook = addressBook.Where(x => x.FirstName == searchName).ToList();
                     if (firstAddressBook.Count == 0)
                     {
@@ -164,25 +165,25 @@ namespace AddressBook.Services
                     Console.WriteLine("Not a valid command.");
                     Console.ReadKey();
                     break;
+
             }
         }
-
         public void ViewAddressBook(List<Contact> addressBook)
         {
-                if (addressBook.Count == 0)
+            if (addressBook.Count == 0)
+            {
+                Console.WriteLine("Your AddressBook is empty.");
+            }
+            else
+            {
+                for (int i = 0; i < addressBook.Count; i++)
                 {
-                    Console.WriteLine("Your AddressBook is empty.");
+                    Console.WriteLine($"Contact number: {i + 1}.\nName: {addressBook[i].FirstName} {addressBook[i].LastName}\nAdress: {addressBook[i].StreetAddress}, {addressBook[i].City} \nPhone: {addressBook[i].PhoneNumber}\n");
                 }
-                else
-                {
-                    for (int i = 0; i < addressBook.Count; i++)
-                    {
-                        Console.WriteLine($"Contact number: {i + 1}.\nName: {addressBook[i].FirstName} {addressBook[i].LastName}\nAdress: {addressBook[i].StreetAddress}, {addressBook[i].City} \nPhone: {addressBook[i].PhoneNumber}\n");
-                        Console.Write("Back");
-                    }
-                    /* Jag har här valt att använda en for-loop eftersom jag satt Id som en Guid och det inte säger så mycket. Jag skapar därför ett index istället 
-                       som är oberoende av kontakternas Id-värden. */
-                }
+                /* Jag har här valt att använda en for-loop eftersom jag satt Id som en Guid och det inte säger så mycket. Jag skapar därför ett index istället 
+                   som är oberoende av kontakternas Id-värden. */
+            }
+
 
             
         }
