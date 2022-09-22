@@ -2,6 +2,7 @@
 using AddressBook.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
@@ -33,9 +34,48 @@ namespace AddressBook.Services
             return contact;
         }
 
-        public void EditContact()
+        public void EditContact(ref List<Contact> addressBook, Guid id)
         {
-            throw new NotImplementedException();
+            Console.Clear();
+            string index = addressBook.FindIndex(x => x.Id == id).ToString();
+            int _index = int.Parse(index);
+            Console.WriteLine("         EDIT CONTACT        ");
+            Console.WriteLine($"Name: {addressBook[_index].FirstName} {addressBook[_index].LastName}\nAdress: {addressBook[_index].StreetAddress}, {addressBook[_index].City} \nPhone: {addressBook[_index].PhoneNumber}\n");
+            Console.WriteLine("1. First Name.");
+            Console.WriteLine("2. Last Name.");
+            Console.WriteLine("3. Street Address.");
+            Console.WriteLine("4. City.");
+            Console.WriteLine("5. Phone Number.");
+            Console.Write("Please choose what you would like to edit:");
+            var option = Console.ReadLine();
+            Console.WriteLine("Enter new: ");
+            string newEntry = "";
+            newEntry = Console.ReadLine();
+            switch (option)
+            {
+                case "1":
+                    addressBook[_index].FirstName = newEntry;
+                    break;
+                case "2":
+                    addressBook[_index].LastName = newEntry;
+                    break;
+                case "3":
+                    addressBook[_index].StreetAddress = newEntry;
+                    break;
+                case "4":
+                    addressBook[_index].City = newEntry;
+                    break;
+                case "5":
+                    //newEntry = int.Parse(newEntry);
+                    //addressBook[_index].PhoneNumber = newEntry;
+                    break;
+            }
+            Console.Clear();
+            Console.WriteLine($"Name: {addressBook[_index].FirstName} {addressBook[_index].LastName}\nAdress: {addressBook[_index].StreetAddress}, {addressBook[_index].City} \nPhone: {addressBook[_index].PhoneNumber}\n");
+            Console.ReadKey();
+            var addressBookRepository = new AddressBookRepository();
+            addressBookRepository.SaveAddressBook(addressBook);
+
         }
 
         public string MainMenu()
@@ -61,7 +101,7 @@ namespace AddressBook.Services
             switch (Console.ReadLine())
             {
                 case "1":
-
+                    EditContact(ref addressBook, id);
                     break;
                 case "2":
                     RemoveContact(ref addressBook, id);
