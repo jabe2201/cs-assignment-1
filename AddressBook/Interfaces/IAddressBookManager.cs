@@ -23,7 +23,7 @@ namespace AddressBook.Interfaces
         /* Menyval efter att användaren sökt upp en specifik kontakt. */
         public void RemoveContact(ref List<Contact> addressBook, Guid id);
         /* Ska ligga under "ManageContactMenu" */
-        public void EditContact();
+        public void EditContact(ref List<Contact> addressBook, Guid id);
         /* Tillåter användaren att ändra uppgifter om en speciell kontakt.
            Ska ligga under "ManageContactMenu". */
     }
