@@ -36,45 +36,55 @@ namespace AddressBook.Services
 
         public void EditContact(ref List<Contact> addressBook, Guid id)
         {
-            Console.Clear();
             string index = addressBook.FindIndex(x => x.Id == id).ToString();
             int _index = int.Parse(index);
-            Console.WriteLine("         EDIT CONTACT        ");
-            Console.WriteLine($"Name: {addressBook[_index].FirstName} {addressBook[_index].LastName}\nAdress: {addressBook[_index].StreetAddress}, {addressBook[_index].City} \nPhone: {addressBook[_index].PhoneNumber}\n");
-            Console.WriteLine("1. First Name.");
-            Console.WriteLine("2. Last Name.");
-            Console.WriteLine("3. Street Address.");
-            Console.WriteLine("4. City.");
-            Console.WriteLine("5. Phone Number.");
-            Console.Write("Please choose what you would like to edit:");
-            var option = Console.ReadLine();
-            Console.WriteLine("Enter new: ");
-            string newEntry = "";
-            newEntry = Console.ReadLine();
-            switch (option)
+            string option;
+            do
             {
-                case "1":
-                    addressBook[_index].FirstName = newEntry;
-                    break;
-                case "2":
-                    addressBook[_index].LastName = newEntry;
-                    break;
-                case "3":
-                    addressBook[_index].StreetAddress = newEntry;
-                    break;
-                case "4":
-                    addressBook[_index].City = newEntry;
-                    break;
-                case "5":
-                    //newEntry = int.Parse(newEntry);
-                    //addressBook[_index].PhoneNumber = newEntry;
-                    break;
+                Console.Clear();
+                Console.WriteLine("         EDIT CONTACT        ");
+                Console.WriteLine($"Name: {addressBook[_index].FirstName} {addressBook[_index].LastName}\nAdress: {addressBook[_index].StreetAddress}, {addressBook[_index].City} \nPhone: {addressBook[_index].PhoneNumber}\n");
+                Console.WriteLine("1. First Name.");
+                Console.WriteLine("2. Last Name.");
+                Console.WriteLine("3. Street Address.");
+                Console.WriteLine("4. City.");
+                Console.WriteLine("5. Phone Number.");
+                Console.Write("Please choose what you would like to edit:");
+
+                switch (Console.ReadLine())
+                {
+                    case "1":
+                        Console.Write("Enter First Name: ");
+                        addressBook[_index].FirstName = Console.ReadLine();
+                        break;
+                    case "2":
+                        Console.Write("Enter Last Name: ");
+                        addressBook[_index].LastName = Console.ReadLine();
+                        break;
+                    case "3":
+                        Console.Write("Enter Street Address: ");
+                        addressBook[_index].StreetAddress = Console.ReadLine();
+                        break;
+                    case "4":
+                        Console.Write("Enter City: ");
+                        addressBook[_index].City = Console.ReadLine();
+                        break;
+                    case "5":
+                        Console.Write("Enter Phone Number: ");
+                        addressBook[_index].PhoneNumber = Console.ReadLine();
+                        break;
+                }
+                Console.Clear();
+                Console.WriteLine($"Name: {addressBook[_index].FirstName} {addressBook[_index].LastName}\nAdress: {addressBook[_index].StreetAddress}, {addressBook[_index].City} \nPhone: {addressBook[_index].PhoneNumber}\n");
+                Console.ReadKey();
+                var addressBookRepository = new AddressBookRepository();
+                addressBookRepository.SaveAddressBook(addressBook);
+                Console.Write("Would you like to edit something else (Y/N): ");
+                option = Console.ReadLine().ToLower();
+                
             }
-            Console.Clear();
-            Console.WriteLine($"Name: {addressBook[_index].FirstName} {addressBook[_index].LastName}\nAdress: {addressBook[_index].StreetAddress}, {addressBook[_index].City} \nPhone: {addressBook[_index].PhoneNumber}\n");
-            Console.ReadKey();
-            var addressBookRepository = new AddressBookRepository();
-            addressBookRepository.SaveAddressBook(addressBook);
+            while (option == "y");
+            
 
         }
 
