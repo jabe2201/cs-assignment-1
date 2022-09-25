@@ -137,7 +137,7 @@ namespace AddressBook.Services
             string searchOption;
             var addressBookManager = new AddressBookManager(); // du behöver inte ha denna!
             Console.Clear();
-            Console.WriteLine("Search for Contact");
+            Console.WriteLine("         SEARCH CONTACT      ");
             Console.Write("Search by (F) First name or (L) Last name: "); searchOption = Console.ReadLine().ToLower();
 
             Console.Clear();
@@ -158,7 +158,9 @@ namespace AddressBook.Services
                     }
                     else
                     {
+                        Console.WriteLine("         CONTACTS IN YOUR ADDRESSBOOK        \n");
                         addressBookManager.ViewAddressBook(firstAddressBook);
+                        Console.WriteLine("_____________________________________________\n");
                         Console.Write("Would you like to manage contact (Y/N): ");
                         if (Console.ReadLine().ToLower() == "y")
                         {

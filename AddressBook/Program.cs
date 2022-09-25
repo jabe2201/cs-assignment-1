@@ -31,6 +31,9 @@ while (true)
         case "Q":
             Environment.Exit(0);
             break;
-
+        default:
+            Console.WriteLine("Invalid command.");
+            Console.ReadKey();
+            break;
     }
 }
