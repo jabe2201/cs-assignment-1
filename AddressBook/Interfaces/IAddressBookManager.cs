@@ -12,6 +12,8 @@ namespace AddressBook.Interfaces
         public string MainMenu();
         /* Visar huvudmenyn och ber användare göra ett val som den returnerar till main */
         public void ViewAddressBook(List<Contact> addressBook);
+
+        public void DetailedView(List<Contact> addressBook);
         /* Metod som listar alla kontakter i adressboken. */
         public Contact CreateContact();
         /* Skapar en kontakt och låter användaren fylla den med uppgifter.
