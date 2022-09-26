@@ -4,6 +4,7 @@ using AddressBook.Services;
 var addressBookRepository = new AddressBookRepository();
 
 var addressBook = addressBookRepository.ReadAddressBook();
+/* Läser in adressboken ifrån json-filen så att jag har en lokal kopia att arbeta med. */
 
 var addressBookManager = new AddressBookManager();
 

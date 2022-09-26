@@ -16,7 +16,8 @@ namespace AddressBook.Services
         public Contact CreateContact()
         {
             var contact = new Contact();
-            Console.WriteLine("         ADD CONTACT         ");
+            /* Instanserar en kontakt för metoden att fylla.*/
+            Console.WriteLine("         ADD CONTACT         \n");
             Console.Write("Enter First Name: "); contact.FirstName = Console.ReadLine();
             while (string.IsNullOrEmpty(contact.FirstName))
             {
@@ -36,14 +37,15 @@ namespace AddressBook.Services
 
         public void EditContact(ref List<Contact> addressBook, Guid id)
         {
-            string index = addressBook.FindIndex(x => x.Id == id).ToString();
-            int _index = int.Parse(index);
+            int index = addressBook.FindIndex(x => x.Id == id);
+            /* FindIndex söker igenom addressboken efter det Guid id som jag har skickat med ifrån Search- och ManageContact och ger tillbaka positionen i adressbokens index som
+               just det id:et har. Jag använder sedan detta index-värde för att hitta rätt rad i listan som utgör addressbook för att kunna ändra uppgifter om en kontakt.*/
             string option;
             do
             {
                 Console.Clear();
-                Console.WriteLine("         EDIT CONTACT        ");
-                Console.WriteLine($"Name: {addressBook[_index].FirstName} {addressBook[_index].LastName}\nAdress: {addressBook[_index].StreetAddress}, {addressBook[_index].City} \nPhone: {addressBook[_index].PhoneNumber}\n");
+                Console.WriteLine("         EDIT CONTACT        \n");
+                Console.WriteLine($"Name: {addressBook[index].FirstName} {addressBook[index].LastName}\nAdress: {addressBook[index].StreetAddress}, {addressBook[index].City} \nPhone: {addressBook[index].PhoneNumber}\n");
                 Console.WriteLine("1. First Name.");
                 Console.WriteLine("2. Last Name.");
                 Console.WriteLine("3. Street Address.");
@@ -55,27 +57,27 @@ namespace AddressBook.Services
                 {
                     case "1":
                         Console.Write("Enter First Name: ");
-                        addressBook[_index].FirstName = Console.ReadLine();
+                        addressBook[index].FirstName = Console.ReadLine();
                         break;
                     case "2":
                         Console.Write("Enter Last Name: ");
-                        addressBook[_index].LastName = Console.ReadLine();
+                        addressBook[index].LastName = Console.ReadLine();
                         break;
                     case "3":
                         Console.Write("Enter Street Address: ");
-                        addressBook[_index].StreetAddress = Console.ReadLine();
+                        addressBook[index].StreetAddress = Console.ReadLine();
                         break;
                     case "4":
                         Console.Write("Enter City: ");
-                        addressBook[_index].City = Console.ReadLine();
+                        addressBook[index].City = Console.ReadLine();
                         break;
                     case "5":
                         Console.Write("Enter Phone Number: ");
-                        addressBook[_index].PhoneNumber = Console.ReadLine();
+                        addressBook[index].PhoneNumber = Console.ReadLine();
                         break;
                 }
                 Console.Clear();
-                Console.WriteLine($"Name: {addressBook[_index].FirstName} {addressBook[_index].LastName}\nAdress: {addressBook[_index].StreetAddress}, {addressBook[_index].City} \nPhone: {addressBook[_index].PhoneNumber}\n");
+                Console.WriteLine($"Name: {addressBook[index].FirstName} {addressBook[index].LastName}\nAdress: {addressBook[index].StreetAddress}, {addressBook[index].City} \nPhone: {addressBook[index].PhoneNumber}\n");
                 Console.ReadKey();
                 var addressBookRepository = new AddressBookRepository();
                 addressBookRepository.SaveAddressBook(addressBook);
@@ -84,26 +86,26 @@ namespace AddressBook.Services
                 
             }
             while (option == "y");
-            
-
+            /* Jag valde här en do-while loop för att tillåta användaren att ändra flera uppgifter för samma kontakt utan att behöva återvända till huvudmenyn.*/
         }
 
         public string MainMenu()
         {
             Console.Clear();
-            Console.WriteLine("         ADDRESS BOOK         ");
+            Console.WriteLine("         ADDRESS BOOK         \n");
             Console.WriteLine("1. View Address book");
             Console.WriteLine("2. Add Contact to your Address book");
             Console.WriteLine("3. Search Contact\n");
             Console.WriteLine("Q. To Exit Addressbook");
             Console.Write("\nPlease enter an Option: ");
             return (Console.ReadLine());
+            /* Visar menyvalen och returnerar användarens val till programmet.*/
         }
 
         public void ManageContactMenu(ref List<Contact> addressBook, Guid id)
         {
             Console.Clear();
-            Console.WriteLine("Manage Contact\n");
+            Console.WriteLine("         MANAGE CONTACT      \n");
             Console.WriteLine("1. Change contat");
             Console.WriteLine("2. Remove contact");
             Console.Write("Enter command: ");
@@ -122,24 +124,30 @@ namespace AddressBook.Services
                     Console.ReadKey();
                     break;
             }
+            /* Jag väljer här att skicka adressboken som en ref eftersom jag vill kunna ändra direkt i listan och inte i en kopia och returnera den. Det tillåter mig också
+               att använda .Where för att ta bort en kontakt. */
         }
 
         public void RemoveContact(ref List<Contact> addressBook, Guid id)
         {
             var addressBookRepo = new AddressBookRepository();
+            /* Instansering för att kunna spara adressboken när en kontakt är borttagen.*/ 
             addressBook = addressBook.Where(x => x.Id != id).ToList();
+            /* Skapar en ny lista som innehåller alla positioner förutom det objekt som innehåller Guid id:et som jag har skickat med till funktionen. */
             addressBookRepo.SaveAddressBook(addressBook);
+            Console.Clear();
+            Console.WriteLine("Contact was succesfully removed.");
+            Console.ReadKey();
         }
 
         public void SearchContact(ref List<Contact> addressBook)
         {
             string searchName;
             string searchOption;
-            var addressBookManager = new AddressBookManager(); // du behöver inte ha denna!
+            var addressBookManager = new AddressBookManager(); 
             Console.Clear();
-            Console.WriteLine("         SEARCH CONTACT      ");
+            Console.WriteLine("         SEARCH CONTACT      \n");
             Console.Write("Search by (F) First name or (L) Last name: "); searchOption = Console.ReadLine().ToLower();
-
             Console.Clear();
 
             switch (searchOption)
@@ -149,8 +157,8 @@ namespace AddressBook.Services
                     Console.Write("Enter Name: ");
                     searchName = Console.ReadLine();
                     Console.Clear();
-
                     var firstAddressBook = addressBook.Where(x => x.FirstName == searchName).ToList();
+                    /* Jag skapar här en ny lista eftersom en adressbok kan innehålla många kontakter med samma för eller efternamn. */
                     if (firstAddressBook.Count == 0)
                     {
                         Console.WriteLine("There is no contact with that name in your Addressbook.");
@@ -169,6 +177,8 @@ namespace AddressBook.Services
                                 Console.Write("\nPlease enter Contact Number of the Contact you would like to manage: ");
                                 var index = int.Parse(Console.ReadLine());
                                 var id = firstAddressBook[index - 1].Id;
+                                /* Eftersom mitt index i ViewAddressBook inte börjar på noll utan ett måste jag här dra av ett för att få fram rätt Guid Id. Detta är det Id som jag kommer att
+                                   använda när jag tar bort eller ändrar i en kontakt, min markör för att hitta rätt objekt i listan.*/
                                 addressBookManager.ManageContactMenu(ref addressBook, id);
                             }
                             catch
@@ -235,9 +245,6 @@ namespace AddressBook.Services
                 /* Jag har här valt att använda en for-loop eftersom jag satt Id som en Guid och det inte säger så mycket. Jag skapar därför ett index istället 
                    som är oberoende av kontakternas Id-värden. */
             }
-
-
-            
         }
     }
 }
