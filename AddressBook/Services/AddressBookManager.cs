@@ -165,9 +165,7 @@ namespace AddressBook.Services
                     }
                     else
                     {
-                        Console.WriteLine("         CONTACTS IN YOUR ADDRESSBOOK        \n");
                         addressBookManager.ViewAddressBook(firstAddressBook);
-                        Console.WriteLine("_____________________________________________\n");
                         Console.Write("Would you like to manage contact (Y/N): ");
                         if (Console.ReadLine().ToLower() == "y")
                         {
