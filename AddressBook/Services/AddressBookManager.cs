@@ -239,9 +239,11 @@ namespace AddressBook.Services
             }
             else
             {
+                Console.WriteLine("         CONTACTS         \n");
                 for (int i = 0; i < addressBook.Count; i++)
                 {
-                    Console.WriteLine($"Contact number: {i + 1}.\nName: {addressBook[i].FirstName} {addressBook[i].LastName}\nAdress: {addressBook[i].StreetAddress}, {addressBook[i].City} \nPhone: {addressBook[i].PhoneNumber}\n");
+                    Console.WriteLine($"{i + 1}: {addressBook[i].FirstName} {addressBook[i].LastName}");
+                    Console.WriteLine("__________________\n\n");
                 }
                 /* Jag har här valt att använda en for-loop eftersom jag satt Id som en Guid och det inte säger så mycket. Jag skapar därför ett index istället 
                    som är oberoende av kontakternas Id-värden. */
