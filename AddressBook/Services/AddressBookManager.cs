@@ -165,7 +165,7 @@ namespace AddressBook.Services
                     }
                     else
                     {
-                        addressBookManager.ViewAddressBook(firstAddressBook);
+                        addressBookManager.DetailedView(firstAddressBook);
                         Console.Write("Would you like to manage contact (Y/N): ");
                         if (Console.ReadLine().ToLower() == "y")
                         {
@@ -200,7 +200,7 @@ namespace AddressBook.Services
                     }
                     else
                     {
-                        addressBookManager.ViewAddressBook(lastAddressBook);
+                        addressBookManager.DetailedView(lastAddressBook);
                         Console.Write("Would you like to manage contact (Y/N): ");
                         if (Console.ReadLine().ToLower() == "y")
                         {
@@ -245,6 +245,15 @@ namespace AddressBook.Services
                 }
                 /* Jag har här valt att använda en for-loop eftersom jag satt Id som en Guid och det inte säger så mycket. Jag skapar därför ett index istället 
                    som är oberoende av kontakternas Id-värden. */
+            }
+        }
+        public void DetailedView(List<Contact> addressBook)
+        {
+            Console.WriteLine("         CONTACTS         \n");
+            for (int i = 0; i < addressBook.Count; i++)
+            {
+                Console.WriteLine($"{i + 1}: {addressBook[i].FirstName} {addressBook[i].LastName}\nAddress: {addressBook[i].StreetAddress}, {addressBook[i].City}\nPhone Number: {addressBook[i].PhoneNumber}");
+                Console.WriteLine("__________________\n\n");
             }
         }
     }
