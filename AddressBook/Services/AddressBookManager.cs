@@ -252,7 +252,7 @@ namespace AddressBook.Services
             Console.WriteLine("         CONTACTS         \n");
             for (int i = 0; i < addressBook.Count; i++)
             {
-                Console.WriteLine($"{i + 1}: {addressBook[i].FirstName} {addressBook[i].LastName}\nAddress: {addressBook[i].StreetAddress}, {addressBook[i].City}\nPhone Number: {addressBook[i].PhoneNumber}");
+                Console.WriteLine($"Number: {i + 1}.\nName: {addressBook[i].FirstName} {addressBook[i].LastName}\nAddress: {addressBook[i].StreetAddress}, {addressBook[i].City}\nPhone Number: {addressBook[i].PhoneNumber}");
                 Console.WriteLine("__________________\n\n");
             }
         }
