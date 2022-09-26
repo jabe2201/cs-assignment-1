@@ -15,7 +15,7 @@ namespace AddressBook.Services
         public string CreateFilePath()
         {
             Console.Write("Please enter a filepath that you would like to use to save your Address Book: ");
-            string filePath = Console.ReadLine(); //= @"C:\Users\jacob\Documents\Nackademin\ProgrammeringC#\ovningar\AddressBook\addressbook.json";
+            string filePath = Console.ReadLine(); 
             filePath = $@"{filePath}\addressbook.json";
             return filePath;
         }
