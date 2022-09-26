@@ -14,21 +14,31 @@ namespace AddressBook.Services
     {
         public string CreateFilePath()
         {
-            string filePath = @"C:\Users\jacob\Documents\Nackademin\ProgrammeringC#\ovningar\AddressBook\addressbook.json";
+            Console.Write("Please enter a filepath that you would like to use to save your Address Book: ");
+            string filePath = Console.ReadLine(); //= @"C:\Users\jacob\Documents\Nackademin\ProgrammeringC#\ovningar\AddressBook\addressbook.json";
+            filePath = $@"{filePath}.json";
             return filePath;
         }
         public List<Contact> ReadAddressBook(string filePath)
         {
-            if(!File.Exists(filePath))
+            if (!File.Exists(filePath))
             {
                 using (File.Create(filePath))
                 return new List<Contact>();
             }
             /* If-satsen kollar först om sökvägen finns, om inte så skapar den en ny sökväg och en ny lista som den skickar tillbaka till main. */
             var data = File.ReadAllText(filePath);
-            var addressBook = JsonSerializer.Deserialize<List<Contact>>(data);
-            return addressBook;
-            /* Läser in ifrån json-filen och skapar en lista som går att använda i main programmet och returnerar denna. */
+            if(data.Count() == 0) 
+            {
+                return new List<Contact>();
+            }
+            /* Kontrollerar om listan är tom. För om den är det så kraschar programmet när vi kör det. */
+            else
+            {
+                var addressBook = JsonSerializer.Deserialize<List<Contact>>(data);
+                return addressBook;
+                /* Läser in ifrån json-filen och skapar en lista som går att använda i main programmet och returnerar denna. */
+            }
         }
 
         public void SaveAddressBook(List<Contact> addressBook, string filePath)
