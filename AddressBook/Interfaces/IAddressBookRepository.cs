@@ -9,6 +9,8 @@ namespace AddressBook.Interfaces
 {
     public interface IAddressBookRepository
     {
+        public string CreateFilePath();
+        /* Metod för att göra det möjligt för användaren att lägga in en egen filepath. */
         public void SaveAddressBook(List<Contact> addressBook);
         /* Metod som sparar adressboken till en fil. Kommer att behöva
            list som parameter. */
