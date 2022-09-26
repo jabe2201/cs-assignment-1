@@ -18,6 +18,8 @@ namespace AddressBook.Services
             string filePath = Console.ReadLine(); 
             filePath = $@"{filePath}\addressbook.json";
             return filePath;
+            /* Metoden tillåter användaren att själv ange vart den ösnkar spara adressboken. Jag lägger sedan till den nödvändiga informationen som måste
+               finnas med i stringen för att File.Create ska kunna skapa en fil utav det.*/
         }
         public List<Contact> ReadAddressBook(string filePath)
         {
