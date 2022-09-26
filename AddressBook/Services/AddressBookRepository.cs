@@ -31,7 +31,7 @@ namespace AddressBook.Services
             /* Läser in ifrån json-filen och skapar en lista som går att använda i main programmet och returnerar denna. */
         }
 
-        public void SaveAddressBook(List<Contact> addressBook)
+        public void SaveAddressBook(List<Contact> addressBook, string filePath)
         {
             var options = new JsonSerializerOptions { WriteIndented = true };
             /* Indenterar raderna så att det blir lättare att läsa dokumentet. */

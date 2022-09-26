@@ -16,14 +16,14 @@ namespace AddressBook.Interfaces
         public Contact CreateContact();
         /* Skapar en kontakt och låter användaren fylla den med uppgifter.
            Returnerar sedan den färdiga kontakten rätt in i adressboken. */
-        public void SearchContact(ref List<Contact> addressBook);
+        public void SearchContact(ref List<Contact> addressBook, string filePath);
         /* Tar emot adressboken som en list och ber användaren om ett söknamn
            att söka igenom list med. */
-        public void ManageContactMenu(ref List<Contact> addressBook, Guid id);
+        public void ManageContactMenu(ref List<Contact> addressBook, Guid id, string filePath);
         /* Menyval efter att användaren sökt upp en specifik kontakt. */
-        public void RemoveContact(ref List<Contact> addressBook, Guid id);
+        public void RemoveContact(ref List<Contact> addressBook, Guid id, string filePath);
         /* Ska ligga under "ManageContactMenu" */
-        public void EditContact(ref List<Contact> addressBook, Guid id);
+        public void EditContact(ref List<Contact> addressBook, Guid id, string filePath);
         /* Tillåter användaren att ändra uppgifter om en speciell kontakt.
            Ska ligga under "ManageContactMenu". */
     }

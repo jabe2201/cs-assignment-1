@@ -35,7 +35,7 @@ namespace AddressBook.Services
             return contact;
         }
 
-        public void EditContact(ref List<Contact> addressBook, Guid id)
+        public void EditContact(ref List<Contact> addressBook, Guid id, string filePath)
         {
             int index = addressBook.FindIndex(x => x.Id == id);
             /* FindIndex söker igenom addressboken efter det Guid id som jag har skickat med ifrån Search- och ManageContact och ger tillbaka positionen i adressbokens index som
@@ -80,7 +80,7 @@ namespace AddressBook.Services
                 Console.WriteLine($"Name: {addressBook[index].FirstName} {addressBook[index].LastName}\nAdress: {addressBook[index].StreetAddress}, {addressBook[index].City} \nPhone: {addressBook[index].PhoneNumber}\n");
                 Console.ReadKey();
                 var addressBookRepository = new AddressBookRepository();
-                addressBookRepository.SaveAddressBook(addressBook);
+                addressBookRepository.SaveAddressBook(addressBook, filePath);
                 Console.Write("Would you like to edit something else (Y/N): ");
                 option = Console.ReadLine().ToLower();
                 
@@ -102,7 +102,7 @@ namespace AddressBook.Services
             /* Visar menyvalen och returnerar användarens val till programmet.*/
         }
 
-        public void ManageContactMenu(ref List<Contact> addressBook, Guid id)
+        public void ManageContactMenu(ref List<Contact> addressBook, Guid id, string filePath)
         {
             Console.Clear();
             Console.WriteLine("         MANAGE CONTACT      \n");
@@ -113,10 +113,10 @@ namespace AddressBook.Services
             switch (Console.ReadLine())
             {
                 case "1":
-                    EditContact(ref addressBook, id);
+                    EditContact(ref addressBook, id, filePath);
                     break;
                 case "2":
-                    RemoveContact(ref addressBook, id);
+                    RemoveContact(ref addressBook, id, filePath);
                     break;
                 default:
                     Console.Clear();
@@ -128,19 +128,19 @@ namespace AddressBook.Services
                att använda .Where för att ta bort en kontakt. */
         }
 
-        public void RemoveContact(ref List<Contact> addressBook, Guid id)
+        public void RemoveContact(ref List<Contact> addressBook, Guid id, string filePath)
         {
             var addressBookRepo = new AddressBookRepository();
             /* Instansering för att kunna spara adressboken när en kontakt är borttagen.*/ 
             addressBook = addressBook.Where(x => x.Id != id).ToList();
             /* Skapar en ny lista som innehåller alla positioner förutom det objekt som innehåller Guid id:et som jag har skickat med till funktionen. */
-            addressBookRepo.SaveAddressBook(addressBook);
+            addressBookRepo.SaveAddressBook(addressBook, filePath);
             Console.Clear();
             Console.WriteLine("Contact was succesfully removed.");
             Console.ReadKey();
         }
 
-        public void SearchContact(ref List<Contact> addressBook)
+        public void SearchContact(ref List<Contact> addressBook, string filePath)
         {
             string searchName;
             string searchOption;
@@ -178,7 +178,7 @@ namespace AddressBook.Services
                                 var id = firstAddressBook[index - 1].Id;
                                 /* Eftersom mitt index i ViewAddressBook inte börjar på noll utan ett måste jag här dra av ett för att få fram rätt Guid Id. Detta är det Id som jag kommer att
                                    använda när jag tar bort eller ändrar i en kontakt, min markör för att hitta rätt objekt i listan.*/
-                                addressBookManager.ManageContactMenu(ref addressBook, id);
+                                addressBookManager.ManageContactMenu(ref addressBook, id, filePath);
                             }
                             catch
                             {
@@ -211,7 +211,7 @@ namespace AddressBook.Services
                                 Console.Write("\nPlease enter Contact Number of the Contact you would like to manage: ");
                                 var index = int.Parse(Console.ReadLine());
                                 var id = lastAddressBook[index - 1].Id;
-                                addressBookManager.ManageContactMenu(ref addressBook, id);
+                                addressBookManager.ManageContactMenu(ref addressBook, id, filePath);
                             }
                             catch
                             {
@@ -225,7 +225,7 @@ namespace AddressBook.Services
                 default:
                     Console.WriteLine("Not a valid command.");
                     Console.ReadKey();
-                    SearchContact(ref addressBook);
+                    SearchContact(ref addressBook, filePath);
                     /* Skickar tillbaka oss till början av SearchContact ifall vi slår in fel och skickar oss inte tillbaka till huvudmenyn.*/
                     break;
 
