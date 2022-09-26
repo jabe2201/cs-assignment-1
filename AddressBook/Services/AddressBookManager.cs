@@ -149,7 +149,6 @@ namespace AddressBook.Services
             Console.WriteLine("         SEARCH CONTACT      \n");
             Console.Write("Search by (F) First name or (L) Last name: "); searchOption = Console.ReadLine().ToLower();
             Console.Clear();
-
             switch (searchOption)
             {
 
@@ -186,7 +185,7 @@ namespace AddressBook.Services
                                 Console.WriteLine("Contact Number does not exsist.");
                                 Console.ReadKey();
                             }
-
+                            /* try-catch ser här till att vi inte kastas ut ur SearchContact om vi slår in en siffra som inte finns i adressboken. */
                         }
                     }
                     break;
@@ -226,6 +225,8 @@ namespace AddressBook.Services
                 default:
                     Console.WriteLine("Not a valid command.");
                     Console.ReadKey();
+                    SearchContact(ref addressBook);
+                    /* Skickar tillbaka oss till början av SearchContact ifall vi slår in fel och skickar oss inte tillbaka till huvudmenyn.*/
                     break;
 
             }
