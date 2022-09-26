@@ -15,7 +15,7 @@ namespace AddressBook.Services
         public string CreateFilePath()
         {
             Console.Write("Please enter a filepath that you would like to use to save your Address Book: ");
-            string filePath = Console.ReadLine(); 
+            string filePath = Console.ReadLine();
             filePath = $@"{filePath}\addressbook.json";
             return filePath;
             /* Metoden tillåter användaren att själv ange vart den ösnkar spara adressboken. Jag lägger sedan till den nödvändiga informationen som måste
